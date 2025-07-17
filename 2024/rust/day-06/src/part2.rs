@@ -33,7 +33,6 @@ pub fn posible_loop(chars: &[Vec<(char, usize, usize)>], origin: &[i32; 2], dir:
     let mut corners: Vec<[[usize; 2]; 2]> = vec![];
 
     loop {
-        let mut exist_loop = false;
         let next = suma(start, compass[direction]);
         if !it_is_inside(next, &matrix) {
             return false;
@@ -46,7 +45,7 @@ pub fn posible_loop(chars: &[Vec<(char, usize, usize)>], origin: &[i32; 2], dir:
                 [next[0] as usize, next[1] as usize],
             ];
             if !corners.is_empty() {
-                exist_loop = corners.iter().any(|corner: &[[usize; 2]; 2]| *corner == target);
+                let exist_loop = corners.iter().any(|corner: &[[usize; 2]; 2]| *corner == target);
                 if exist_loop {
                     return false;
                 }
